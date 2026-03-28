@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>骆俊希 · 个人简历</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f4f1;
+      --bg-elevated: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #5c5c5c;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.12);
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.08);
+      --avatar-ring: rgba(0, 0, 0, 0.06);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-sans: "Noto Sans SC", "DM Sans", system-ui, sans-serif;
+      --font-display: "DM Sans", "Noto Sans SC", system-ui, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f1218;
+      --bg-elevated: #171b24;
+      --text: #f0f2f5;
+      --text-muted: #9aa3b2;
+      --accent: #60a5fa;
+      --accent-soft: rgba(96, 165, 250, 0.15);
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.45);
+      --avatar-ring: rgba(255, 255, 255, 0.08);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-soft), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 0%, rgba(37, 99, 235, 0.06), transparent);
+      transition: background-color 0.35s ease, color 0.25s ease;
+    }
+
+    [data-theme="dark"] body {
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-soft), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 0%, rgba(96, 165, 250, 0.08), transparent);
+    }
+
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem 1.25rem;
+      pointer-events: none;
+    }
+
+    .theme-toggle {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.85rem;
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      color: var(--text);
+      border-color: var(--accent);
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .theme-toggle .icon-sun,
+    .theme-toggle .icon-moon {
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+
+    [data-theme="light"] .icon-moon,
+    [data-theme="dark"] .icon-sun {
+      display: none;
+    }
+
+    main {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 4.5rem 1.25rem 3.5rem;
+    }
+
+    @media (min-width: 640px) {
+      main {
+        padding: 5.5rem 1.5rem 4rem;
+      }
+    }
+
+    .card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      box-shadow: var(--shadow);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    @media (min-width: 640px) {
+      .card {
+        padding: 2.5rem 2rem;
+      }
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .avatar {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      border: 4px solid var(--avatar-ring);
+      flex-shrink: 0;
+      overflow: hidden;
+      background: linear-gradient(145deg, #d4d4d4 0%, #a3a3a3 100%);
+    }
+
+    [data-theme="dark"] .avatar {
+      background: linear-gradient(145deg, #3f3f46 0%, #52525b 100%);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 5vw, 2.125rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .motto {
+      margin: 0;
+      max-width: 22em;
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .motto::before {
+      content: "「";
+      opacity: 0.45;
+    }
+
+    .motto::after {
+      content: "」";
+      opacity: 0.45;
+    }
+
+    .actions {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.35rem;
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent) 0%, #1d4ed8 100%);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      box-shadow: 0 4px 14px -4px rgba(37, 99, 235, 0.55);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    [data-theme="dark"] .btn-primary {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      box-shadow: 0 4px 14px -4px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -6px rgba(37, 99, 235, 0.55);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .btn-primary .chevron {
+      width: 1.125rem;
+      height: 1.125rem;
+      transition: transform 0.25s ease;
+    }
+
+    .btn-primary[aria-expanded="true"] .chevron {
+      transform: rotate(180deg);
+    }
+
+    .notes-region {
+      margin-top: 1.5rem;
+      overflow: hidden;
+    }
+
+    .notes-panel {
+      display: grid;
+      gap: 1rem;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.35s ease;
+    }
+
+    .notes-panel.is-open {
+      max-height: 2000px;
+      opacity: 1;
+      margin-top: 0;
+    }
+
+    .note {
+      padding: 1.125rem 1.25rem;
+      text-align: left;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.2s ease;
+    }
+
+    .note:hover {
+      border-color: rgba(37, 99, 235, 0.25);
+    }
+
+    [data-theme="dark"] .note:hover {
+      border-color: rgba(96, 165, 250, 0.3);
+    }
+
+    .note-title {
+      margin: 0 0 0.35rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .note-meta {
+      margin: 0 0 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .note-body {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="切换深色/浅色模式">
+      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+      </svg>
+      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+      </svg>
+      <span id="themeLabel">浅色</span>
+    </button>
+  </div>
+
+  <main>
+    <section class="card profile" aria-labelledby="name-heading">
+      <div class="avatar">
+        <!-- 将头像文件放在与本 HTML 同一文件夹，命名为 avatar.jpg；或修改下方 src 为你的路径 -->
+        <img src="avatar.jpg" alt="骆俊希的头像" width="112" height="112" />
+      </div>
+      <h1 id="name-heading">骆俊希</h1>
+      <p class="motto">人生忽如寄，莫辜负茶、汤和好天气。</p>
+      <div class="actions">
+        <button type="button" class="btn-primary" id="notesBtn" aria-expanded="false" aria-controls="notesPanel">
+          我的学习记录
+          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="notes-region">
+        <div class="notes-panel" id="notesPanel" hidden>
+          <article class="note">
+            <h2 class="note-title">CSS 容器查询入门</h2>
+            <p class="note-meta">2026-03-20 · 前端</p>
+            <p class="note-body">用 <code style="font-size: 0.85em;">@container</code> 可以根据父级宽度调整布局，比单纯媒体查询更贴近组件本身，适合卡片、侧边栏等可复用模块。</p>
+          </article>
+          <article class="note">
+            <h2 class="note-title">有效休息的 Pomodoro 变体</h2>
+            <p class="note-meta">2026-03-22 · 习惯</p>
+            <p class="note-body">把专注 25 分钟 + 短休息 5 分钟改成「完成一个小任务再休息」，减少频繁打断心流，适合需要深度思考的学习块。</p>
+          </article>
+          <article class="note">
+            <h2 class="note-title">Git 分支命名小约定</h2>
+            <p class="note-meta">2026-03-25 · 工具</p>
+            <p class="note-body">采用 <code style="font-size: 0.85em;">type/short-description</code>（如 <code style="font-size: 0.85em;">feat/login-form</code>）便于在列表里一眼区分功能与修复，和团队对齐一次即可。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer>本页为单文件示例，可直接替换姓名与笔记内容。</footer>
+  </main>
+
+  <script>
+    (function () {
+      var storageKey = "resume-theme";
+      var root = document.documentElement;
+
+      function getPreferredTheme() {
+        var stored = localStorage.getItem(storageKey);
+        if (stored === "light" || stored === "dark") return stored;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+
+      function applyTheme(theme) {
+        root.setAttribute("data-theme", theme);
+        var label = document.getElementById("themeLabel");
+        if (label) label.textContent = theme === "dark" ? "深色" : "浅色";
+      }
+
+      applyTheme(getPreferredTheme());
+
+      document.getElementById("themeToggle").addEventListener("click", function () {
+        var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        localStorage.setItem(storageKey, next);
+        applyTheme(next);
+      });
+
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
+        if (!localStorage.getItem(storageKey)) applyTheme(e.matches ? "dark" : "light");
+      });
+
+      var btn = document.getElementById("notesBtn");
+      var panel = document.getElementById("notesPanel");
+
+      btn.addEventListener("click", function () {
+        var open = btn.getAttribute("aria-expanded") === "true";
+        if (open) {
+          btn.setAttribute("aria-expanded", "false");
+          panel.classList.remove("is-open");
+          window.setTimeout(function () {
+            panel.setAttribute("hidden", "");
+          }, 460);
+        } else {
+          btn.setAttribute("aria-expanded", "true");
+          panel.removeAttribute("hidden");
+          requestAnimationFrame(function () {
+            panel.classList.add("is-open");
+          });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
